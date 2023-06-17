@@ -57,4 +57,3 @@ public class Main {
         System.out.println("Итого: " + sum + " руб.");
     }
 }
-
