@@ -1,12 +1,17 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Main {
     static String[] products = {"Хлеб", "Яблоки", "Молоко"};
     static int[] prices = {100, 200, 300};
     static int[] quantity = new int[3];
+    static int[] sumProducts = new int[3];
+
 
     public static void main(String[] args) {
+        int sum = 0;
+
         System.out.println("Товары для покупки: ");
 
         for (int i = 0; i < products.length; i++) {
@@ -24,26 +29,32 @@ public class Main {
             if ("end".equals(input)) {
                 System.out.println("Программа завершена!");
                 break;
+
             }
 
-            String[] pairNumbQuantity = input.split(" ");
+            String[] pairNumbQuantity = input.split(" "); //Сплит
 
-            int productNumb = Integer.parseInt(pairNumbQuantity[0]);
+            int productNumb = Integer.parseInt(pairNumbQuantity[0]) - 1;
             int productQuantity = Integer.parseInt(pairNumbQuantity[1]);
-            int sumProducts = 0;
 
+            quantity[productNumb] = quantity[productNumb] + productQuantity;
 
-            quantity[productNumb - 1] = productQuantity;
 
             System.out.println("Ваша корзина");
 
             for (int i = 0; i < products.length; i++) {
+
                 if (quantity[i] != 0) {
                     System.out.println(products[i] + " - " + quantity[i] + " шт." + " - " + (quantity[i] * prices[i]) + " руб");
                 }
-                sumProducts += (quantity[i] * prices[i]);
+                sumProducts[i] = quantity[i] * prices[i];
+
+                for (int y = 0; y < sumProducts.length; y++) {
+                    sum = IntStream.of(sumProducts).sum(); //Суммирует элементы массива.
+                }
             }
-            System.out.println("Итого: " + sumProducts + " руб.");
         }
+        System.out.println("Итого: " + sum + " руб.");
     }
 }
+
