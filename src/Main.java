@@ -15,7 +15,7 @@ public class Main {
         System.out.println("Товары для покупки: ");
 
         for (int i = 0; i < products.length; i++) {
-            System.out.println(products[i] + " - " + prices[i] + " руб за шт/кг");
+            System.out.println((i + 1) + ". " + products[i] + " - " + prices[i] + " руб за шт/кг");
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -29,7 +29,6 @@ public class Main {
             if ("end".equals(input)) {
                 System.out.println("Программа завершена!");
                 break;
-
             }
 
             String[] pairNumbQuantity = input.split(" "); //Сплит
@@ -38,22 +37,24 @@ public class Main {
             int productQuantity = Integer.parseInt(pairNumbQuantity[1]);
 
             quantity[productNumb] = quantity[productNumb] + productQuantity;
+        }
 
+        System.out.println("Ваша корзина");
 
-            System.out.println("Ваша корзина");
+        for (int i = 0; i < products.length; i++) {
 
-            for (int i = 0; i < products.length; i++) {
-
-                if (quantity[i] != 0) {
-                    System.out.println(products[i] + " - " + quantity[i] + " шт." + " - " + (quantity[i] * prices[i]) + " руб");
-                }
-                sumProducts[i] = quantity[i] * prices[i];
-
-                for (int y = 0; y < sumProducts.length; y++) {
-                    sum = IntStream.of(sumProducts).sum(); //Суммирует элементы массива.
-                }
+            if (quantity[i] != 0) {
+                System.out.println(products[i] + " - " + quantity[i] + " шт." + " - " + (quantity[i] * prices[i]) + " руб");
             }
+            sumProducts[i] = quantity[i] * prices[i];
+
+            for (int y = 0; y < sumProducts.length; y++) {
+                sum = IntStream.of(sumProducts).sum(); //Суммирует элементы массива.
+
+            }
+
         }
         System.out.println("Итого: " + sum + " руб.");
     }
+
 }
